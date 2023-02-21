@@ -76,6 +76,6 @@ def get_naver_finance_board(codes, max_page, year, month, day):
 
     df['감성분석'] = df['제목'].apply(get_sentiment_analysis)
 
-
+    print(df)
 
     return df
