@@ -2,7 +2,7 @@ from src.sentiment_analysis_combine import get_naver_finance_board
 from src.stock_price import get_stock_price
 import pandas as pd
 
-result = get_stock_price()
+result = get_stock_price("20220720", "20220810", "005930")
 print(result)
 
 result2 = get_naver_finance_board("041510", 30, 2023, 2, 1)

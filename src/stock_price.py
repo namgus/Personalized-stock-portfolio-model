@@ -1,6 +1,6 @@
 from pykrx import stock
 
-def get_stock_price():
-    df = stock.get_market_ohlcv("20220720", "20220810", "005930")
+def get_stock_price(start_date, end_date, stock_code):
+    df = stock.get_market_ohlcv(start_date, end_date, stock_code)
     print(df.head(3))
     return df
