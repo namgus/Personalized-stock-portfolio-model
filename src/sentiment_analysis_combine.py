@@ -61,6 +61,11 @@ def get_naver_finance_board(codes, max_page, year, month, day):
 
             if time_pass_flag:
                 break
+        
+            # Check crawling process
+            if page_num % 100 == 0:
+                print(page_num)
+
         except requests.exceptions.RequestException as e:
             print(f"Error occurred while fetching page {page_num}: {e}")
             break
