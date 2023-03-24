@@ -130,3 +130,6 @@ dmypy.json
 
 # model file
 *.pkl
+
+# test model file
+.tmp
