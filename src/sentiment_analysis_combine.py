@@ -2,6 +2,7 @@ from datetime import datetime
 
 import pandas as pd
 import requests
+import time
 from bs4 import BeautifulSoup
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, pipeline
 
@@ -27,6 +28,8 @@ def get_sentiment_analysis(text):
 
 
 def get_naver_finance_board(codes, max_page, year, month, day):
+    start = time.time()
+
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
                       '(KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36'
@@ -37,7 +40,7 @@ def get_naver_finance_board(codes, max_page, year, month, day):
 
     target_date = datetime(year, month, day).date()
 
-    for page_num in range(1, max_page + 1):
+    for page_num in range(4000, max_page + 1):
         url = f"https://finance.naver.com/item/board.naver?code={codes}&page={page_num}"
         try:
             response = requests.get(url, headers=headers)
@@ -64,7 +67,8 @@ def get_naver_finance_board(codes, max_page, year, month, day):
         
             # Check crawling process
             if page_num % 100 == 0:
-                print(page_num)
+                now = time.time()
+                print(page_num, now - start)
 
         except requests.exceptions.RequestException as e:
             print(f"Error occurred while fetching page {page_num}: {e}")
